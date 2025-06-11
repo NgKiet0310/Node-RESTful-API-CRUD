@@ -1,7 +1,7 @@
 // db.js (nếu "type": "module")
 import { MongoClient } from "mongodb";
 
-const url = "mongodb+srv://nguyenthuongkiet2005:Thuongkiet%40123@cluster0.r86dr6t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const url = "mongodb+srv://nguyenthuongkiet2005:<db_password>@cluster0.cyssml3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
 const client = new MongoClient(url);
