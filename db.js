@@ -1,10 +1,10 @@
 // db.js (nếu "type": "module")
 import { MongoClient } from "mongodb";
 
-const uri = "mongodb+srv://nguyenthuongkiet2005:Thuongkiet%40123@cluster0.r86dr6t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const url = "mongodb+srv://nguyenthuongkiet2005:Thuongkiet%40123@cluster0.r86dr6t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
-const client = new MongoClient(uri);
+const client = new MongoClient(url);
 
 async function run() {
   try {
