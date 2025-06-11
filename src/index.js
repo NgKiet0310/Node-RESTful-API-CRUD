@@ -188,7 +188,7 @@ app.put("/api/products/:id", validateUpdateProduct, validateId ,async(req, res)=
 });
 
 // API: Xóa sản phẩm
-app.delete("api/products/:id", validateId, async(req, res)=>{
+app.delete("/api/products/:id", validateId, async(req, res)=>{
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
         if(!product){
