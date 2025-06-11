@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "node src/index.js",
     "cli:create": "node src/cli.js create-product",
     "cli:list": "node src/cli.js list-products",
     "cli:update": "node src/cli.js update-product",
