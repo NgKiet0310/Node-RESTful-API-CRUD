@@ -1,0 +1,34 @@
+{
+  "name": "database-mongo",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "cli:create": "node src/cli.js create-product",
+    "cli:list": "node src/cli.js list-products",
+    "cli:update": "node src/cli.js update-product",
+    "cli:delete": "node src/cli.js delete-product",
+    "cli:search": "node src/cli.js search-products",
+    "cli:import": "node src/cli.js import-products",
+    "cli:stats": "node src/cli.js stats-products",
+    "cli:filter": "node src/cli.js filter-products"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "joi": "^17.13.3",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.15.1",
+    "node-fetch": "^3.3.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
