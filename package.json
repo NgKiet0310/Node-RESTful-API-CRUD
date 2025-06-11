@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "cli:create": "node src/cli.js create-product",
     "cli:list": "node src/cli.js list-products",
     "cli:update": "node src/cli.js update-product",
