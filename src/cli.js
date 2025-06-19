@@ -5,7 +5,10 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 import dotenv from 'dotenv';
 import Product from "./models/product.js";
-
+import logger from "./middlewares/logger.js";
+import User from "./models/user.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 // Load biến môi trường
 dotenv.config();
@@ -342,6 +345,119 @@ yargs(hideBin(process.argv))
   }
 )
 
+   .command({
+    command: "create-user",
+    describe: "Tạo user mới",
+    builder: {
+      username: { type: "string", demandOption: true, describe: "Tên user" },
+      password: { type: "string", demandOption: true, describe: "Mật khẩu" },
+      mongoUrl: { type: "string", demandOption: true, describe: "MongoDB URL" },
+    },
+    handler: async (argv) => {
+      await connectDB(argv.mongoUrl);
+      const { username, password } = argv;
+      try {
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+          logger.error(`CLI: Username exists: ${username}`);
+          console.log(chalk.red(`CLI: Username exists: ${username}`));
+          await mongoose.disconnect();
+          return;
+        }
+
+        const user = new User({ username, password });
+        await user.save();
+
+        logger.info(`CLI: User created: ${username}`);
+        console.log(chalk.green(`CLI: User created: ${username}`));
+        await mongoose.disconnect();
+      } catch (error) {
+        logger.error(`CLI Error: ${error.message}`);
+        console.log(chalk.red(`CLI Error: ${error.message}`));
+        await mongoose.disconnect();
+      }
+    },
+  })
+
+    .command({
+    command: "login",
+    describe: "Đăng nhập và lấy token",
+    builder: {
+      username: { type: "string", demandOption: true, describe: "Tên user" },
+      password: { type: "string", demandOption: true, describe: "Mật khẩu" },
+      mongoUrl: { type: "string", demandOption: true, describe: "MongoDB URL" },
+    },
+    handler: async (argv) => {
+      const { username, password, mongoUrl } = argv;
+      await connectDB(mongoUrl);
+      try {
+        const user = await User.findOne({ username });
+        if (!user) {
+          logger.error(`CLI Login Error: User not found: ${username}`);
+          console.log("❌ User không tồn tại");
+          return;
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          logger.error("CLI Login Error: Sai mật khẩu");
+          console.log("❌ Sai mật khẩu");
+          return;
+        }
+
+        const token = jwt.sign(
+          { id: user._id, username: user.username, role: user.role },
+          "your_jwt_secret", // Đổi thành biến .env trong thực tế
+          { expiresIn: "1h" }
+        );
+
+        logger.info(`CLI Login Success: ${username}`);
+        console.log("✅ Đăng nhập thành công. Token:");
+        console.log(token);
+      } catch (error) {
+        logger.error(`CLI Login Error: ${error.message}`);
+        console.log("❌ Lỗi:", error.message);
+      } finally {
+        mongoose.disconnect();
+      }
+    },
+  })
+  .command(
+  "clear-cache",
+  "Xóa cache Redis",
+  (yargs) =>
+    yargs
+      .option("key", {
+        type: "string",
+        describe: "Cache key cụ thể cần xoá",
+      })
+      .option("prefix", {
+        type: "string",
+        describe: "Xoá tất cả cache bắt đầu với prefix này",
+      }),
+  async (argv) => {
+    try {
+      if (!argv.key && !argv.prefix) {
+        console.log("❌ Vui lòng cung cấp --key hoặc --prefix");
+        return;
+      }
+
+      const { deleteCache, deleteCacheByPrefix } = await import("./cache.js");
+
+      if (argv.key) {
+        await deleteCache(argv.key);
+        console.log(chalk.green(`✅ Đã xoá cache theo key: ${argv.key}`));
+      }
+
+      if (argv.prefix) {
+        await deleteCacheByPrefix(argv.prefix);
+        console.log(chalk.green(`✅ Đã xoá cache theo prefix: ${argv.prefix}`));
+      }
+    } catch (error) {
+      console.log(chalk.red(`CLI Error: ${error.message}`));
+    }
+  }
+)
 
 
   .help()

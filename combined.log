@@ -1,0 +1,18 @@
+{"level":"error","message":"CLI Error: User is not defined","timestamp":"2025-06-12T14:16:45.113Z"}
+{"level":"info","message":"CLI: User created: admin","timestamp":"2025-06-12T14:17:30.273Z"}
+{"level":"error","message":"CLI Login Error: bcrypt is not defined","timestamp":"2025-06-12T14:20:39.813Z"}
+{"level":"error","message":"CLI Login Error: jwt is not defined","timestamp":"2025-06-12T14:21:03.402Z"}
+{"level":"info","message":"CLI Login Success: admin","timestamp":"2025-06-12T14:21:19.334Z"}
+{"level":"info","message":"User registered: admin1","timestamp":"2025-06-14T08:04:29.366Z"}
+{"level":"info","message":"CLI: User created: kiet","timestamp":"2025-06-14T08:17:23.044Z"}
+{"level":"info","message":"Product deleted: Product To Delete By Admin","timestamp":"2025-06-16T04:30:06.693Z"}
+{"level":"info","message":"Product deleted: Product To Delete By Admin","timestamp":"2025-06-16T04:33:12.921Z"}
+{"level":"info","message":"User registered: testuser","timestamp":"2025-06-16T13:39:54.151Z"}
+{"level":"info","message":"User registered: testuser","timestamp":"2025-06-16T13:42:31.202Z"}
+{"level":"info","message":"User registered: Thuongkiet","timestamp":"2025-06-16T13:46:40.754Z"}
+{"level":"info","message":"User registered: Yennhi","timestamp":"2025-06-16T13:58:27.533Z"}
+{"level":"info","message":"Product deleted: Test Product","timestamp":"2025-06-16T14:03:43.086Z"}
+{"level":"info","message":"User registered: admin","timestamp":"2025-06-19T14:20:45.529Z"}
+{"level":"info","message":"User registered: admin","timestamp":"2025-06-19T14:23:45.898Z"}
+{"level":"info","message":"User registered: kiet","timestamp":"2025-06-19T14:26:31.039Z"}
+{"level":"info","message":"Product deleted: yen nhi","timestamp":"2025-06-19T14:29:59.324Z"}

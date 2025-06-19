@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema({
         default: Date.now, // mặc định là thời gian hiện tại
     },
 });
-productSchema.index({ name:1 });
+productSchema.index({ name: "text", category: 1 });
 
 // tạo model từ schema
 const Product = mongoose.model('Product', productSchema );

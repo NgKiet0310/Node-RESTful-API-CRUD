@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "685021894bf36743772efa27",
+    "name": "Tivi",
+    "price": 600,
+    "category": "Electronic",
+    "description": "Ti vi hiện đại",
+    "createdAt": "2025-06-16T13:52:09.926Z",
+    "__v": 0
+  },
+  {
+    "_id": "685021a44bf36743772efa2a",
+    "name": "Laptop Asus",
+    "price": 12000,
+    "category": "Laptop",
+    "description": "Updated iPhone",
+    "createdAt": "2025-06-16T13:52:36.577Z",
+    "__v": 0
+  },
+  {
+    "_id": "685021af4bf36743772efa2d",
+    "name": "SamSung",
+    "price": 1600,
+    "category": "Phone",
+    "description": "Điện thoại hiện đại",
+    "createdAt": "2025-06-16T13:52:47.017Z",
+    "__v": 0
+  },
+  {
+    "_id": "685021ba4bf36743772efa30",
+    "name": "Oppo",
+    "price": 1650,
+    "category": "Phone",
+    "description": "Điện thoại hiện đại",
+    "createdAt": "2025-06-16T13:52:58.569Z",
+    "__v": 0
+  }
+]
