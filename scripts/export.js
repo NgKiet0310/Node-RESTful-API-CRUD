@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import fs from "fs";
 import { Parser } from "json2csv";
-import Product from "../src/models/product.js";
+import Product from "../models/product.js";
 
 dotenv.config();
 

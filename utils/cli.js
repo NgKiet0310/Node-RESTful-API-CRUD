@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import Product from "../models/product.js";
 import logger from "../middleware/logger.js";
 import User from "../models/user.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 // Load biến môi trường
@@ -81,6 +81,7 @@ yargs(hideBin(process.argv))
         console.table(
           products.map((product, index) => ({
             STT: index + 1,
+            Ảnh: product.image,
             Tên: product.name,
             Giá: product.price,
             Danh_mục: product.category || "Không có",

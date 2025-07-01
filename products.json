@@ -1,38 +1,22 @@
 [
   {
-    "_id": "685021894bf36743772efa27",
-    "name": "Tivi",
-    "price": 600,
-    "category": "Electronic",
-    "description": "Ti vi hiện đại",
-    "createdAt": "2025-06-16T13:52:09.926Z",
+    "_id": "685b9612b9ebbf8eb8de686e",
+    "name": "iPhone 12 Pro Max",
+    "image": "product-1750832658750-989694035.jpg",
+    "price": 120000,
+    "category": "Apple",
+    "description": "SamSung",
+    "createdAt": "2025-06-25T06:24:18.756Z",
     "__v": 0
   },
   {
-    "_id": "685021a44bf36743772efa2a",
-    "name": "Laptop Asus",
-    "price": 12000,
-    "category": "Laptop",
-    "description": "Updated iPhone",
-    "createdAt": "2025-06-16T13:52:36.577Z",
-    "__v": 0
-  },
-  {
-    "_id": "685021af4bf36743772efa2d",
-    "name": "SamSung",
-    "price": 1600,
-    "category": "Phone",
-    "description": "Điện thoại hiện đại",
-    "createdAt": "2025-06-16T13:52:47.017Z",
-    "__v": 0
-  },
-  {
-    "_id": "685021ba4bf36743772efa30",
-    "name": "Oppo",
-    "price": 1650,
-    "category": "Phone",
-    "description": "Điện thoại hiện đại",
-    "createdAt": "2025-06-16T13:52:58.569Z",
+    "_id": "685b98871ace78c377b1515e",
+    "name": "iPhone 12 Pro Max (Vàng)",
+    "image": "product-1750833303446-978116678.jpg",
+    "price": 15000000,
+    "category": "Apple",
+    "description": "TelePhone",
+    "createdAt": "2025-06-25T06:34:47.969Z",
     "__v": 0
   }
 ]

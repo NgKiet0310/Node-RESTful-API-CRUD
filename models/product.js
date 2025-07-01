@@ -6,6 +6,10 @@ const productSchema = new mongoose.Schema({
         required: true, // bắt buộc
         trim: true, // xóa khoảng trắng thừa
     },
+    image: {
+        type: String, // tên file ảnh, không phải đường dẫn đầy đủ
+        required: false, // ảnh không bắt buộc
+    },
     price: {
         type: Number,
         required: true,
@@ -28,6 +32,7 @@ const productSchema = new mongoose.Schema({
 productSchema.index({ name: "text", category: 1 });
 
 // tạo model từ schema
-const Product = mongoose.model('Product', productSchema );
+const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
+
 
 export default Product;

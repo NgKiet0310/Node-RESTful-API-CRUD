@@ -87,3 +87,8 @@ export const refresh = async (req, res, next) => {
     next(error);
   }
 };
+
+export const logout = async (req, res) => {
+  // API logout – xoá token ở frontend là chủ yếu
+  res.status(200).send({ message: "Logout success" });
+};

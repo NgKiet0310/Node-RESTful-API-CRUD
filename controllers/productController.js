@@ -2,6 +2,85 @@ import { getCache, setCache, deleteCache, deleteCacheByPrefix } from "../utils/c
 import logger from "../middleware/logger.js";
 import Product from "../models/product.js";
 
+export const homePage = async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.render('home', { title: 'Trang chủ', products });
+  } catch (err) {
+    console.error('❌ Lỗi truy vấn MongoDB:', err);
+    res.status(500).send('Lỗi lấy sản phẩm');
+  }
+};
+
+// Hiển thị form thêm sản phẩm
+export const showAddForm = (req, res) => {
+  res.render("products/add", { title: "Thêm sản phẩm" });
+};
+
+// Xử lý thêm sản phẩm (EJS client)
+export const handleAddProduct = async (req, res) => {
+  try {
+    const { name, price, category, description } = req.body;
+    const image = req.file ? req.file.filename : null;
+
+    await Product.create({
+      name: name.trim(),
+      price: Number(price),
+      category: category?.trim(),
+      description: description?.trim(),
+      image
+    });
+
+    res.redirect("/admin");
+  } catch (error) {
+    console.error("❌ Lỗi thêm sản phẩm:", error.message);
+    res.status(500).send("Lỗi khi thêm sản phẩm");
+  }
+};
+
+// hiển thị form chỉnh sửa
+export const showEditForm = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).send('Không tìm thấy sản phẩm');
+    res.render('products/edit', { title: 'Sửa sản phẩm', product });
+  } catch (err) {
+    res.status(500).send('Lỗi khi lấy sản phẩm để sửa');
+  }
+};
+
+// xử lý chỉnh sửa
+export const handleUpdateProduct = async (req, res) => {
+  try {
+    const { name, price, category, description } = req.body;
+    const updateData = {
+      name: name.trim(),
+      price: Number(price),
+      category: category?.trim(),
+      description: description?.trim(),
+    };
+    if (req.file) {
+      updateData.image = req.file.filename;
+    }
+
+    await Product.findByIdAndUpdate(req.params.id, updateData);
+    res.redirect('/admin');
+  } catch (err) {
+    res.status(500).send('Lỗi khi cập nhật sản phẩm');
+  }
+};
+
+// xóa sản phẩm
+export const handleDeleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.redirect('/admin');
+  } catch (err) {
+    res.status(500).send('Lỗi khi xoá sản phẩm');
+  }
+};
+
+
 
 export const createProduct = async (req, res, next) => {
   try {

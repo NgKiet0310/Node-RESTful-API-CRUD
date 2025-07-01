@@ -1,0 +1,15 @@
+<% title = "Đăng ký tài khoản" %>
+
+<h2>📝 Đăng ký tài khoản mới</h2>
+
+<form action="/auth/register" method="POST" class="form-auth">
+  <label for="username">Tên đăng nhập:</label>
+  <input type="text" id="username" name="username" required>
+
+  <label for="password">Mật khẩu:</label>
+  <input type="password" id="password" name="password" required>
+
+  <button type="submit">Đăng ký</button>
+</form>
+
+<p>Đã có tài khoản? <a href="/auth/login">Đăng nhập</a></p>

@@ -1,0 +1,22 @@
+<h2><%= title %></h2>
+
+<div class="product-list">
+    <% products.forEach(product => { %>
+        <div class="product-card">
+            <% if (product.image) { %>
+                <img src="/uploads/<%= product.image %>" width="100" height="100" style="object-fit: cover;"><br>
+            <% } %>
+            <h3><%= product.name %></h3>
+            <p>Giá: <%= product.price.toLocaleString() %> VNĐ</p>
+            <p>Danh mục: <%= product.category %></p>
+            <p>Mô tả:  <%= product.description %></p>
+
+            <div class="action-buttons">
+                <a href="/admin/products/<%= product._id %>/edit" class="btn btn-warning">Sửa</a>
+                <form action="/admin/products/<%= product._id %>/delete" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger" onsubmit="return confirm('Bạn có chắc chắn muốn xoá không?')">Xoá</button>
+                </form>
+            </div>
+        </div>
+    <% }); %>
+</div>
