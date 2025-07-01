@@ -29,7 +29,18 @@ const productSchema = new mongoose.Schema({
         default: Date.now, // mặc định là thời gian hiện tại
     },
 });
-productSchema.index({ name: "text", category: 1 });
+// 🔍 Index tìm kiếm theo tên (dùng $text)
+productSchema.index({ name: "text" });
+
+// 💰 Lọc theo khoảng giá
+productSchema.index({ price: 1 });
+
+// 📊 Thống kê / lọc theo category
+productSchema.index({ category: 1 });
+
+// 🕓 Sắp xếp theo ngày tạo mới nhất
+productSchema.index({ createdAt: -1 });
+
 
 // tạo model từ schema
 const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
