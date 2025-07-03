@@ -1,0 +1,29 @@
+<style>
+  #chat-box {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 999;
+    padding: 10px;
+  }
+  #chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+</style>
+
+<div id="chat-box">
+  <h4>Admin Chat</h4>
+  <div id="chat-messages"></div>
+  <input id="chat-input" placeholder="Nhập tin nhắn..." />
+  <button onclick="sendChat()">Gửi</button>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

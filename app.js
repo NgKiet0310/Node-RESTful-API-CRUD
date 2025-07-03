@@ -8,29 +8,40 @@ import setupSwagger from "./config/swagger.js";
 import cookieParser from "cookie-parser";
 import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
+import mongoose from "mongoose";
 // Route imports
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import authFormRoutes from "./routes/authFormRoutes.js";
 import welcomeRoute from "./routes/welcomeRoute.js";
 import sessionAuth from "./middleware/sessionAuth.js";
-
+import chatRoute from "./routes/chatRoute.js";
 // Middleware bảo vệ
 import authenticate from "./middleware/authenticate.js";
-
+import { sessionMiddleware } from "./middleware/session.js";
+// ✅ Load biến môi trường
 dotenv.config();
+
+// ✅ Khai báo MONGO_URI để dùng cho mongoose.connect
+const MONGO_URI = process.env.MONGO_URL || "mongodb://localhost:27017/database-mongo";
+
+
 
 const app = express();
 
+
 app.use(cookieParser());
+app.use(sessionMiddleware); // ✅ Dùng chung session với Socket.IO
 // Middleware cơ bản
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN || "http://localhost:3000" }));
 
-// session
 
+
+
+// session
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-secret-key",
@@ -90,9 +101,5 @@ app.use((err, req, res, next) => {
   res.status(500).send({ error: "Something went wrong" });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(chalk.green(`🚀 Server running on port ${PORT}`));
-});
 
 export default app;

@@ -8,6 +8,7 @@ import Product from "../models/product.js";
 import logger from "../middleware/logger.js";
 import { jest } from "@jest/globals";
 
+
 // ✅ Cấu hình timeout cho toàn bộ test
 jest.setTimeout(20000);
 
@@ -75,6 +76,8 @@ describe("🔐 Bảo mật & Xác thực", () => {
     expect(res.body).toHaveProperty("error", "Forbidden");
   });
 });
+
+
 
 // ✅ Tạo và cập nhật sản phẩm
 describe("✅ Tạo & cập nhật sản phẩm", () => {
